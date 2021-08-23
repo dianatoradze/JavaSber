@@ -6,7 +6,7 @@ public class Task {
     static double fuelConsumption = 0;
     static double fuelCost = 0;
     static String carName = "";
-
+    static int sum=0;
     static double gsmCoast = 0;
 
     static String code = "";
@@ -27,7 +27,7 @@ public class Task {
                 "C200_3-170-1100", "C300_3-150-29", "C400_3-100-28",
                 "C100_1-300", "C200_1-100-750", "C300_1-32-15"};
         Arrays.sort(array);
-
+        int sum=0;
         List<String> lines = Arrays.asList(array);
 
         for (String line : lines) {
@@ -45,7 +45,6 @@ public class Task {
                 carType1.addAll(Arrays.asList(fragments).subList(0, 3));
 
             }
-
             if (fragments.length == 4) {
 
                 car.addAll(Arrays.asList(fragments).subList(0, 4));
@@ -59,6 +58,7 @@ public class Task {
                         for (int k = j+4; k < car.size(); k=k+4) {
 
                             carType4 = car.subList(j, k+4);
+
                         }
                     }
                 }
@@ -67,23 +67,38 @@ public class Task {
 
 
         }
-        System.out.println(car);
+        System.out.println(carType1);
         info(carType1);
         typeCar(carType1);
+
+        System.out.println(getSum(carType1));
+
         info(carType2);
         typeCar(carType2);
 
-        info(carType3);typeCar(carType3);
-
-        info(carType4); typeCar(carType4);
 
     }
+
+    private static int getSum(ArrayList<String> carType) {
+
+        for(int i = 0; i < carType.size(); i=i+2){
+            for(int j = 0; j < carType.size(); j=j+2){
+                if (i==j){
+                    for(int k = 0; k < carType.size(); k=k+3) {
+                        sum += k;
+                    }
+                }
+            }
+
+        }
+        return sum;
+    }
+
 
     private static void info(List<String> carType) {
 
         for (int i = 0; i < carType.size(); i++) {
             System.out.print(" код " + carType.get(i));
-
             i++;
             System.out.print(" номер " + carType.get(i));
             i++;
@@ -91,14 +106,10 @@ public class Task {
                 System.out.print(" пробег " + carType.get(i));
                 i++;
                 System.out.println(" параметр " + carType.get(i));
-
             } else {
                 System.out.println(" пробег " + carType.get(i));
-
             }
-
         }
-
 
     }
 
@@ -138,6 +149,4 @@ public class Task {
         System.out.println("Для данной категория машины: " + carName
                 + " - расход топлива: " + fuelConsumption + "," + " стоимость топлива: " + fuelCost);
     }
-
-
 }
