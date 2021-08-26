@@ -19,7 +19,7 @@ public class Task2 {
         orderHiring = new OrderHiring(1,"Прием сотрудника",employee1,"Сотрудник нанят", Status.исполнен);
         System.out.println(orderHiring);
         OrderDismissal orderDismissal = new OrderDismissal(2,"Увольнение сотрудника",employee2,"Сотрудник уволен", "Сокращение штата",Status.создан);
-        System.out.println(orderHiring);
+        System.out.println(orderDismissal);
 
         orderDismissal= new OrderDismissal(2,"Увольнение сотрудника",employee2,"Сотрудник уволен", "Сокращение штата",Status.исполнен);
         System.out.println(orderDismissal);
