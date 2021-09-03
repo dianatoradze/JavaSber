@@ -13,13 +13,18 @@ public class Car {
     static String carName = "";
     static double gsmCoast = 0;
 
-    static final String code1 = "C100";
+    protected static final String code1 = "C100";
     static final String code2 = "C200";
     static final String code3 = "C300";
     static final String code4 = "C400";
+    private static String code;
 
-    public static void main(String[] args) {
-
+//        public static void main(String[] args) {
+//        System.out.println(createArrayInList(code1));
+//
+//    }
+    public static List<String> createArrayInList(String code) {
+        Car.code = code;
         array = new String[]{"C100_1-100", "C200_1-120-1200",
                 "C300_1-120-30",
                 "C400_1-80-20", "C100_2-50", "C200_2-40-1000",
@@ -27,22 +32,24 @@ public class Car {
                 "C200_3-170-1100", "C300_3-150-29", "C400_3-100-28",
                 "C100_1-300", "C200_1-100-750", "C300_1-32-15"};
 
-        ArrayList<String> carType1 = getStrings(code1);
-        ArrayList<String> carType2 = getStrings(code2);
-        ArrayList<String> carType3 = getStrings(code3);
-        ArrayList<String> carType4 = getStrings(code4);
-
-        info(carType1);
-        typeCar(code1);
-        info(carType2);
-        typeCar(code2);
-        info(carType3);
-        typeCar(code3);
-        info(carType4);
-        typeCar(code4);
-
-       calculate(carType1, code1);
+        return getStrings(code);
     }
+//        перенести в main
+//        ArrayList<String> carType2 = getStrings(code2);
+//        ArrayList<String> carType3 = getStrings(code3);
+//        ArrayList<String> carType4 = getStrings(code4);
+//
+//        info(carType1);
+//        typeCar(code1);
+//        info(carType2);
+//        typeCar(code2);
+//        info(carType3);
+//        typeCar(code3);
+//        info(carType4);
+//        typeCar(code4);
+//
+//       calculate(carType1, code1);
+
     // Не правильно высчитывается стоимость расходов гсм
     private static void calculate(List<String> carCoast, String code) {
         ArrayList<String> gsmList = new ArrayList<>();
@@ -58,7 +65,7 @@ public class Car {
         Collections.min(gsmList);
         System.out.println("Стоимость расходов гсм " + gsmList);
     }
-
+        // сделать в HashSet
     private static void typeCar(String text) {
 // выбор значений для класса
             switch (text) {
@@ -89,7 +96,7 @@ public class Car {
 
     }
 
-
+        // переделать
     private static void info(List<String> carType) {
         // вывод значений для каждого авто по классу
         for (int i = 0; i < carType.size(); i++) {
