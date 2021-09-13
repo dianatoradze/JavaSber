@@ -1,20 +1,42 @@
 package Task3.Task5;
 
+
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
-class Gamer {
 
-    private String username;
-    private List<Gamer> statistics;
+public class Gamer {
+    //  сделать класс игрока и хранить статитстику
+    static String name;
+    static int points;
 
-    public Gamer(String username) {
-        this.username = username;
-        this.statistics = new ArrayList<>();
+    static HashMap<String, Integer> statistics;
+
+    public Gamer(String name) {
+
+        Gamer.name = name;
+        Gamer.points = 0;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
+    }
+
+    public int getPoints() {
+        return points++;
+    }
+
+    public HashMap<String, Integer> add() {
+
+        new checkName.Node(name);
+        statistics.put(name, points);
+
+        return statistics;
+    }
+
+    @Override
+    public String toString() {
+        return "name - " + getName() + " points: " + " " + getPoints();
     }
 }
 
