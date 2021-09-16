@@ -1,30 +1,36 @@
 package Task3.Task1;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
-public class Car {
+public class Car extends Transport {
 
     private static String[] array;
-    static double fuelConsumption = 0;
-    static double fuelCost = 0;
-    static String carName = "";
-    static double gsmCoast = 0;
 
-    protected static final String code1 = "C100";
+    static final String code1 = "C100";
     static final String code2 = "C200";
     static final String code3 = "C300";
     static final String code4 = "C400";
-    private static String code;
+    static String code;
 
-//        public static void main(String[] args) {
-//        System.out.println(createArrayInList(code1));
-//
-//    }
+    private static Map<String, Transport> carList;
+    private final Options Coast;
+    // 2,3,4 options
+    public Car(Options options, int carNumber, int mileage) {
+        super(carNumber,mileage);
+        this.parametr = 0;
+        this.Coast = options;
+        carList = new HashMap<>();
+
+    }
+    // для выборки видов машин в формулу
+    public static void addCar(Options options) {
+
+        carList.put(Options.code1.name(), new Car(Options.code1, carNumber,mileage));
+
+    }
+
     public static List<String> createArrayInList(String code) {
-        Car.code = code;
+
         array = new String[]{"C100_1-100", "C200_1-120-1200",
                 "C300_1-120-30",
                 "C400_1-80-20", "C100_2-50", "C200_2-40-1000",
@@ -34,75 +40,18 @@ public class Car {
 
         return getStrings(code);
     }
-//        перенести в main
-//        ArrayList<String> carType2 = getStrings(code2);
-//        ArrayList<String> carType3 = getStrings(code3);
-//        ArrayList<String> carType4 = getStrings(code4);
-//
-//        info(carType1);
-//        typeCar(code1);
-//        info(carType2);
-//        typeCar(code2);
-//        info(carType3);
-//        typeCar(code3);
-//        info(carType4);
-//        typeCar(code4);
-//
-//       calculate(carType1, code1);
-
-    // Не правильно высчитывается стоимость расходов гсм
-    private static void calculate(List<String> carCoast, String code) {
-        ArrayList<String> gsmList = new ArrayList<>();
-        if (carCoast.contains(code)) {
-            for (int i = 0; i < carCoast.size(); i = i + 3) {
-                double v = ((double) i) / 100;
-                gsmCoast = v * (fuelConsumption * fuelCost);
-                gsmList.add(String.valueOf(gsmCoast));
-            }
-        }
-        Collections.sort(gsmList);
-        Collections.max(gsmList);
-        Collections.min(gsmList);
-        System.out.println("Стоимость расходов гсм " + gsmList);
-    }
-        // сделать в HashSet
-    private static void typeCar(String text) {
-// выбор значений для класса
-            switch (text) {
-                case code1:
-                    fuelCost = 46.10;
-                    fuelConsumption = 12.5;
-                    carName = "passenger car";
-                    break;
-                case code2:
-                    fuelCost = 48.90;
-                    fuelConsumption = 12;
-                    carName = "truck";
-                    break;
-                case code3:
-                    fuelCost = 47.50;
-                    fuelConsumption = 11.5;
-                    carName = "passenger transport";
-                    break;
-                case code4:
-                    fuelCost = 48.90;
-                    fuelConsumption = 20;
-                    carName = "heavy machinery";
-                    break;
-            }
-
-        System.out.println("Для данной категория машины: " + carName
-                    + " - расход топлива: " + fuelConsumption + "," + " стоимость топлива: " + fuelCost);
-
-    }
 
         // переделать
-    private static void info(List<String> carType) {
+    public static void info(List<String> carType) {
+
         // вывод значений для каждого авто по классу
         for (int i = 0; i < carType.size(); i++) {
-            System.out.print(" код " + carType.get(i)); i++;
-            System.out.print(" номер " + carType.get(i)); i++;
+            System.out.print(" код " + carType.get(i));
+            code = carType.get(i); i++;
+            System.out.print(" номер " + carType.get(i));
+            carNumber = Integer.parseInt(carType.get(i));i++;
             if (!carType.contains(code1)) {
+               mileage = Integer.parseInt(carType.get(i));
                 System.out.print(" пробег " + carType.get(i)); i++;
                 System.out.println(" параметр " + carType.get(i));
             } else {
